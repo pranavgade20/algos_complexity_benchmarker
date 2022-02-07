@@ -1,6 +1,6 @@
 import os
-import subprocess
 import threading
+from timeit import timeit
 
 import numpy as np
 import pandas as pd
@@ -10,16 +10,20 @@ import tqdm
 def main():
     df = pd.DataFrame(columns=['type', 'size', 'runtime'])
     df_lock = threading.Lock()
-    sort_name = 'selectionsort'
+    sort_name = 'insertionsort'
     COUNT = 200
     def fill_df(pos):
         rands = np.random.randint(5000, 100000, COUNT)
         res = []
         tbar = tqdm.tqdm(total=COUNT, position=pos)
         for r in rands:
-            proc = subprocess.Popen([f'cmake-build-debug/{sort_name}', str(r)], stdout=subprocess.PIPE)
-            stdin, _ = proc.communicate()
-            res.append((r, stdin.decode('utf-8')))
+            time = timeit(
+                stmt=f'subprocess.call(["cmake-build-debug/{sort_name}", '
+                     f'*"{" ".join(str (x) for x in np.random.randint(-2147483648, 2147483647, size=r))}"'
+                     f'.split(" ")], stdout=subprocess.DEVNULL)',
+                setup='import subprocess',
+                number=1)
+            res.append((r, time))
             tbar.update(1)
         with df_lock:
             nonlocal df

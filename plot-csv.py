@@ -1,4 +1,4 @@
-# https://jsfiddle.net/9wmjchp5/show
+# https://jsfiddle.net/z51x9asg/show
 
 import numpy as np
 import pandas as pd
@@ -33,7 +33,7 @@ def main():
     fig.update_layout(
         title="Runtime of n^2 Sorting Algorithms",
         xaxis_title="Input Size (number of elements)",
-        yaxis_title="Runtime (microseconds)",
+        yaxis_title="Runtime (seconds)",
         legend_title_text='Algorithm'
     )
     fig.show()
