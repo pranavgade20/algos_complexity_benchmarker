@@ -31,7 +31,7 @@ def main():
 
     fig = go.Figure(arr)
     fig.update_layout(
-        title="Runtime of n^2 Sorting Algorithms",
+        title="Runtime of Sorting Algorithms",
         xaxis_title="Input Size (number of elements)",
         yaxis_title="Runtime (seconds)",
         legend_title_text='Algorithm'
