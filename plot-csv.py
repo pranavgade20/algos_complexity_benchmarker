@@ -8,7 +8,9 @@ from sklearn.preprocessing import PolynomialFeatures
 
 
 def main():
+    sort_names = ['mergesort', 'quicksort']
     data = pd.read_csv('results.csv')
+    data = data[data['type'].map(lambda x: x in sort_names)]
     data['type'] = data['type'].astype('category')
     arr = []
     for sort_name in data['type'].cat.categories:
@@ -42,3 +44,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# 2022-02-17_19-46

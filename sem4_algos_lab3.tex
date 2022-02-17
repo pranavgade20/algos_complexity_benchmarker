@@ -1,0 +1,107 @@
+%! suppress = MissingLabel
+\documentclass{article}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+\usepackage{float}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{Algorithms Lab Assignment 2} % Title
+
+\author{Pranav \textsc{Gade}} % Author name
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+    \maketitle % Insert the title, author and date
+
+    \begin{center}
+        \begin{tabular}{l r}
+            Batch:    & CS\&AI     \\
+            Roll no.: & LCI2020010
+        \end{tabular}
+    \end{center}
+
+
+    \section{Quick sort}
+    Analysis of Quick sort complexity.
+    \subsection{Code}
+    \lstinputlisting[language=C]{quicksort.c}
+
+    \subsection{Output}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{../../../../Pictures/2022-02-17_19-49}
+        \caption{Quick sort output}
+    \end{figure}
+
+    \subsection{Graph}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{../../../../Pictures/2022-02-17_19-46}
+        \caption{Quick sort runtime v/s input size plot}
+    \end{figure}
+
+    \section{Merge sort}
+    Analysis of Merge sort complexity.
+    \subsection{Code}
+    \lstinputlisting[language=C]{mergesort.c}
+
+    \subsection{Output}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{../../../../Pictures/2022-02-17_19-53}
+        \caption{Merge sort output}
+    \end{figure}
+
+    \subsection{Graph}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{../../../../Pictures/2022-02-17_19-54}
+        \caption{Merge sort runtime v/s input size plot}
+    \end{figure}
+
+    \section{Footnotes}
+    Code to generate graphs and this file is on \href{https://github.com/pranavgade20/algos_complexity_benchmarker}{github}
+
+\end{document}
