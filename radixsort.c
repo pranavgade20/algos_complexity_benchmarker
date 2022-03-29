@@ -53,8 +53,9 @@ void sort(int* arr, int size) {
     if (bit < 0) bit = 0;
 
     int ptr = 0;
+    sort_helper(arr, size, ptr);
     while (bit >= ptr) {
-        sort_helper(arr, size, ptr);
         ptr += 4;
+        sort_helper(arr, size, ptr);
     }
 }
