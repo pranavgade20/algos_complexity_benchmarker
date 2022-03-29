@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void sort(int* arr, int size);
 void merge(int* arr1, int size1, int* arr2, int size2, int* arr);
 void k_way_merge(int** arrays, int* sizes, int sizes_len, int* result);
 
 int main(int argc, char** argv) {
-
     FILE* file;
     file = fopen("../merge_with_insertion_input.txt", "r");
     int n;
@@ -23,6 +23,7 @@ int main(int argc, char** argv) {
         for (int j = 0; j < sizes[i]; ++j) {
             fscanf(file, "%d\n", &arrays[i][j]);
         }
+        sort(arrays[i], sizes[i]);
         total += sizes[i];
     }
 
@@ -38,6 +39,18 @@ int main(int argc, char** argv) {
     }
 
     return 0;
+}
+
+void sort(int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        int curr = arr[i];
+        int j = i-1;
+        while (arr[j] > curr && j >= 0) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = curr;
+    }
 }
 
 void merge(int* arr1, int size1, int* arr2, int size2, int* arr) {

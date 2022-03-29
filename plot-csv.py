@@ -8,7 +8,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 
 def main():
-    sort_names = ['mergesort', 'quicksort']
+    sort_names = ['stack_reduced_quicksort', 'quicksort']
     data = pd.read_csv('results.csv')
     data = data[data['type'].map(lambda x: x in sort_names)]
     data['type'] = data['type'].astype('category')

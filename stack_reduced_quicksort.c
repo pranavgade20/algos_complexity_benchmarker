@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-void stack_reduced_quick_sort(int* arr, int low, int high) {
+void stack_reduced_quick_sort(int *arr, int low, int high) {
     int q;
     while (low < high) {
         int pivot = high;
@@ -36,13 +36,13 @@ void stack_reduced_quick_sort(int* arr, int low, int high) {
         int temp = arr[i + 1];
         arr[i + 1] = arr[pivot];
         arr[pivot] = temp;
-        q = i + 1;
-        if (q - low < high - q) {
-            stack_reduced_quick_sort(arr, low, q - 1);
-            low = q + 1;
+        i++;
+        if (i - low < high - i) {
+            stack_reduced_quick_sort(arr, low, i - 1);
+            low = i + 1;
         } else {
-            stack_reduced_quick_sort(arr, q + 1, high);
-            high = q - 1;
+            stack_reduced_quick_sort(arr, i + 1, high);
+            high = i - 1;
         }
     }
 }
