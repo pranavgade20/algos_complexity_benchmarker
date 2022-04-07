@@ -2,46 +2,28 @@
 #include <stdio.h>
 
 void sort(int* arr, int size);
+void insertion_sort(int* arr, int size);
 void merge(int* arr1, int size1, int* arr2, int size2, int* arr);
 void k_way_merge(int** arrays, int* sizes, int sizes_len, int* result);
 
 int main(int argc, char** argv) {
-    FILE* file;
-    file = fopen("../merge_with_insertion_input.txt", "r");
-    int n;
-    fscanf(file, "%d\n", &n);
-    int k = 4;
-    int* sizes = malloc(sizeof(int) * k); // not free'd
-    int** arrays = malloc(sizeof(int*) * k); // not free'd
-    int total = 0;
-    for (int i = 0; i < k; ++i) {
-        sizes[i] = n/k;
-        if (i == k-1) {
-            sizes[i] += n%k;
-        }
-        arrays[i] = malloc(sizeof(int) * sizes[i]);
-        for (int j = 0; j < sizes[i]; ++j) {
-            fscanf(file, "%d\n", &arrays[i][j]);
-        }
-        sort(arrays[i], sizes[i]);
-        total += sizes[i];
+    int size = argc - 1;
+    int* arr = malloc(sizeof(int) * size);
+    for (int i = 1; i <= size; ++i) {
+        arr[i-1] = atoi(argv[i]);
     }
 
-    int* result = malloc(sizeof(int) * total);
+    insertion_sort(arr, size);
 
-    k_way_merge(arrays, sizes, k, result);
-
-    FILE* out;
-    out = fopen("../merge_with_insertion_output.txt", "w");
-
-    for (int i = 0; i < total; ++i) {
-        fprintf(out, "%d\n", result[i]);
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", arr[i]);
     }
 
+    free(arr);
     return 0;
 }
 
-void sort(int* arr, int size) {
+void insertion_sort(int* arr, int size) {
     for (int i = 0; i < size; ++i) {
         int curr = arr[i];
         int j = i-1;
@@ -107,4 +89,28 @@ void k_way_merge(int** arrays, int* sizes, int sizes_len, int* result) {
         result[i] = arrays[0][i];
     }
     free(arrays[0]);
+}
+
+void sort(int* arr, int size) {
+    int k = 4;
+    int* sizes = malloc(sizeof(int) * k); // not free'd
+    int** arrays = malloc(sizeof(int*) * k); // not free'd
+    int total = 0;
+    int ptr = 0;
+    for (int i = 0; i < k; ++i) {
+        sizes[i] = size/k;
+        if (i == k-1) {
+            sizes[i] += size%k;
+        }
+        arrays[i] = malloc(sizeof(int) * sizes[i]);
+        for (int j = 0; j < sizes[i]; ++j) {
+            arrays[i][j] = arr[ptr++];
+        }
+        insertion_sort(arrays[i], sizes[i]);
+        total += sizes[i];
+    }
+
+    int* result = malloc(sizeof(int) * total);
+
+    k_way_merge(arrays, sizes, k, result);
 }

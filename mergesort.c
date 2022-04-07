@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void sort(int* arr, int size);
+void insertion_sort(int* arr, int size);
 
 int main(int argc, char** argv) {
     int size = argc - 1;
@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
         arr[i-1] = atoi(argv[i]);
     }
 
-    sort(arr, size);
+    insertion_sort(arr, size);
 
     for (int i = 0; i < size; ++i) {
         printf("%d ", arr[i]);
@@ -64,7 +64,7 @@ void merge_sort(int* arr, int l, int r) {
         }
     }
 }
-void sort(int* arr, int size) {
+void insertion_sort(int* arr, int size) {
     merge_sort(arr, 0, size-1);
 }
 

@@ -10,8 +10,8 @@ import tqdm
 def main():
     df = pd.DataFrame(columns=['type', 'size', 'runtime'])
     df_lock = threading.Lock()
-    sort_names = ['stack_reduced_quicksort']
-    COUNT = 500
+    sort_names = ['merge_sort_with_insertion_sort']
+    COUNT = 16
     for sort_name in sort_names:
         def fill_df(pos):
             rands = np.random.randint(5000, 100000, COUNT)
