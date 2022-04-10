@@ -3,19 +3,19 @@
 
 typedef struct Node {
     int value;
-    struct Node *left;
-    struct Node *right;
+    struct Node* left;
+    struct Node* right;
     int height;
 } Node;
 
-int get_height(Node *node) {
+int get_height(Node* node) {
     if (node == NULL) return 0;
     return node->height;
 }
 
-Node *right_rotate(Node *node) {
-    Node *x = node->left;
-    Node *t = x->right;
+Node* right_rotate(Node* node) {
+    Node* x = node->left;
+    Node* t = x->right;
 
     x->right = node;
     node->left = t;
@@ -30,9 +30,9 @@ Node *right_rotate(Node *node) {
     return x;
 }
 
-Node *left_rotate(Node *node) {
-    Node *r = node->right;
-    Node *l = r->left;
+Node* left_rotate(Node* node) {
+    Node* r = node->right;
+    Node* l = r->left;
 
     r->left = node;
     node->right = l;
@@ -47,13 +47,13 @@ Node *left_rotate(Node *node) {
     return r;
 }
 
-int get_balance(Node *node) {
+int get_balance(Node* node) {
     if (node == NULL)
         return 0;
     return get_height(node->left) - get_height(node->right);
 }
 
-Node *insert_into_tree(Node *root, Node *val) {
+Node* insert_into_tree(Node* root, Node* val) {
     if (root == NULL)
         return val;
 
@@ -88,7 +88,7 @@ Node *insert_into_tree(Node *root, Node *val) {
     return root;
 }
 
-int find_kth_element(Node *root, int *k) {
+int find_kth_element(Node* root, int* k) {
     int ret;
     if (root->left != NULL) {
         ret = find_kth_element(root->left, k);
@@ -104,38 +104,38 @@ int find_kth_element(Node *root, int *k) {
     return -1;
 }
 
-int main(int argc, char **argv) {
-    FILE *file;
+int main(int argc, char* *argv) {
+    FILE* file;
     file = fopen("../kth_order_stat_avl_input.txt", "r");
     int k;
     fscanf(file, "%d\n", &k);
     int n;
     fscanf(file, "%d\n", &n);
-    int *nums = malloc(sizeof(int) * n); // not free'd
+    int* nums = malloc(sizeof(int)*  n); // not free'd
     for (int i = 0; i < n; ++i) {
         fscanf(file, "%d\n", &nums[i]);
     }
 
     int min = nums[0];
     int max = nums[0];
-    Node *root = malloc(sizeof(Node));
+    Node* root = malloc(sizeof(Node));
     root->value = nums[0];
     root->left = NULL;
     root->height = 1;
     for (int i = 1; i < n; ++i) {
-        Node *val = malloc(sizeof(Node));
+        Node* val = malloc(sizeof(Node));
         val->value = nums[i];
         val->left = NULL;
         val->right = NULL;
         val->height = 1;
-        insert_into_tree(root, val);
+        root = insert_into_tree(root, val);
         if (min > nums[i]) min = nums[i];
         if (max < nums[i]) max = nums[i];
     }
 
     int kth = find_kth_element(root, &k);
 
-    FILE *out;
+    FILE* out;
     out = fopen("../kth_order_stat_avl_output.txt", "w");
 
     fprintf(out, "min: %d\n", min);
