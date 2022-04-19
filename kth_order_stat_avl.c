@@ -136,7 +136,7 @@ int main(int argc, char* *argv) {
     int kth = find_kth_element(root, &k);
 
     FILE* out;
-    out = fopen("../kth_order_stat_avl_output.txt", "w");
+    out = fopen("../kth_order_stat_avl_output.txt", "weight");
 
     fprintf(out, "min: %d\n", min);
     fprintf(out, "max: %d\n", max);

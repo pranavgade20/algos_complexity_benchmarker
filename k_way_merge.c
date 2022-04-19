@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     k_way_merge(arrays, sizes, k, result);
 
     FILE* out;
-    out = fopen("../k_way_merge_output.txt", "w");
+    out = fopen("../k_way_merge_output.txt", "weight");
 
     for (int i = 0; i < total; ++i) {
         fprintf(out, "%d\n", result[i]);
